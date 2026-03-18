@@ -46,6 +46,12 @@ elif shape == "Round Tube":
     volume = math.pi * ((OD/2000)**2 -(ID/2000)**2) * (L/1000)
 
 elif shape == "Hexagon":
+    A = st.number_input("Side Length")
+    L = st.number_input("Length")
+
+    volume = ((3**(1/2) * A**2)/2) * L
+
+elif shape == "Square Bar":
     
 
 if st.button("Calculate"):
