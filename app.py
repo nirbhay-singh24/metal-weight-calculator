@@ -18,32 +18,35 @@ materials = {
     "SS 410/430": 7710
 }
 
-shape = st.selectbox("Select Shape" , ["Plate", "Rod", "Pipe"])
+shape = st.selectbox("Select Shape" , ["Round Bar", "Round Tube", "Sheet", "Hexagon", "Square Bar", "Square Tube", "T Bar", "Beam", "Channel", "Angle", "Flat Bar"])
 material = st.selectbox("Select Material", list(materials.keys()))
 
 density = materials[material]
 
 st.subheader("Enter Dimensions (in mm)")
 
-if shape == "Plate":
+if shape == "Sheet":
     L = st.number_input("Length")
     B = st.number_input("Width")
     T = st.number_input("Thickness")
 
     volume = (L/1000)*(B/1000)*(T/1000)
 
-elif shape == "Rod":
+elif shape == "Round Bar":
     D = st.number_input("Diameter")
     L = st.number_input("Length")
     
     volume = math.pi * (D/2000)**2 * (L/1000)
 
-elif shape == "Pipe":
+elif shape == "Round Tube":
     OD = st.number_input("Outer Diameter")
     ID = st.number_input("Inner Diameter")
     L = st.number_input("Length")
 
     volume = math.pi * ((OD/2000)**2 -(ID/2000)**2) * (L/1000)
+
+elif shape == "Hexagon":
+    
 
 if st.button("Calculate"):
     weight = volume * density
