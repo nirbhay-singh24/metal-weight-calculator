@@ -18,7 +18,7 @@ materials = {
     "SS 410/430": 7710
 }
 
-shape = st.selectbox("Select Shape" , ["Round Bar", "Round Tube", "Sheet", "Hexagon", "Square Bar", "Square Tube", "T Bar", "Beam", "Channel", "Angle", "Flat Bar"])
+shape = st.selectbox("Select Shape" , ["Round Bar", "Round Tube", "Sheet", "Hexagon", "Square Bar", "Square Tube", "Flat Bar"])
 material = st.selectbox("Select Material", list(materials.keys()))
 
 density = materials[material]
@@ -46,13 +46,32 @@ elif shape == "Round Tube":
     volume = math.pi * ((OD/2000)**2 -(ID/2000)**2) * (L/1000)
 
 elif shape == "Hexagon":
-    A = st.number_input("Side Length")
+    A = st.number_input("Side")
     L = st.number_input("Length")
 
     volume = ((3**(1/2) * A**2)/2) * L
 
 elif shape == "Square Bar":
-    
+    A = st.number_input("Side")
+    L = st.number_input("Length")
+
+    volume = A**2 * L
+
+elif shape == "Square Tube":
+    A = st.number_input("Side 1")
+    B = st.number_input("Side 2")
+    T = st.number_input("Thickness")
+    L = st.number_input("Length")
+
+    volume = L * (A * B - (A - 2 * T) * (B - 2 * T))
+
+elif shape == "Flat Bar":
+    A = st.number_input("Side 1")
+    B = st.number_input("Side 2")
+    L = st.number_input("Length")
+
+    volume = L * A * B
+
 
 if st.button("Calculate"):
     weight = volume * density
